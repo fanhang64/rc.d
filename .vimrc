@@ -11,10 +11,11 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'Yggdroot/indentLine'
 Bundle 'ervandew/supertab'
-Plugin 'Valloric/YouCompleteMe'''
+" Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Yggdroot/indentLine'
 
 call vundle#end()            
-
 filetype plugin indent on   
 let g:SuperTabDefaultCompletionType = "context"  
 let g:jedi#popup_on_dot = 0 
