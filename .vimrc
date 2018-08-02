@@ -1,33 +1,28 @@
 " 对bundle的配置"
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible 
+filetype off
  
-" set the runtime path to include Vundle and initialize
+" 设置vundle路径并做初始化 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
   
-" let Vundle manage Vundle, required
+" 常用插件 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'Yggdroot/indentLine'
 Bundle 'ervandew/supertab'
 Plugin 'Valloric/YouCompleteMe'''
 
-" All of your Plugins must be added before the following line
 call vundle#end()            
+
 filetype plugin indent on   
-"=======================================分隔符"
 let g:SuperTabDefaultCompletionType = "context"  
 let g:jedi#popup_on_dot = 0 
-"=======================================分隔符"
 colorscheme ron
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 显示相关  
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set shortmess=atI   " 启动的时候不显示那个援助乌干达儿童的提示  
-"winpos 5 5          " 设定窗口位置  
-""set lines=40 columns=155    " 设定窗口大小  
 set go=             " 不要图形按钮  
 autocmd InsertLeave * se nocul  " 用浅色高亮当前行  
 autocmd InsertEnter * se cul    " 用浅色高亮当前行  
@@ -37,20 +32,14 @@ set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strf
 set laststatus=1    " 启动显示状态行(1),总是显示状态行(2)  
 set foldenable      " 允许折叠  
 set foldmethod=manual   " 手动折叠  
-"set background=dark "背景使用黑色 
 " 显示中文帮助
 if version >= 603
 	set helplang=cn
 	set encoding=utf-8
 endif
-" 设置配色方案
-"colorscheme murphy
-"字体 
-"if (has("gui_running")) 
-"   set guifont=Bitstream\ Vera\ Sans\ Mono\ 10 
-"endif 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""新文件标题
+" 新文件标题
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "新建.c,.h,.sh,.java,.py文件，自动插入文件头 
 autocmd BufNewFile *.cpp,*.[ch],*.sh,*.java,*.py exec ":call SetTitle()" 
@@ -67,24 +56,7 @@ func SetTitle()
 		call append(line(".")+5, "\#!/bin/bash") 
 		call append(line(".")+6, "") 
 	elseif &filetype == 'PYTHON'
-		" call setline(1, '#!/usr/bin/python')
-		" call append(line("."), '# -*- coding: utf-8 -*-')
 		call setline(1, '# -*- coding: utf-8 -*-')
-	""	call append(line(".")+1,"\#==============================================================================") 
-	""	call append(line(".")+2, "\# File Name: ".expand("%"))
-	""	call append(line(".")+3, "\# Author: fanzone") 
-	""	call append(line(".")+4, "\# mail: fanhangzhou@163.com") 
-	""	call append(line(".")+5, "\# Created Time: ".strftime("%c")) 
-	""	call append(line(".")+6, "\#==============================================================================") 
-	""	call append(line(".")+7,"")
-	else
-		call setline(1, "/*************************************************************************") 
-		call append(line("."), "	> File Name: ".expand("%")) 
-		call append(line(".")+1, "	> Author: fanzone") 
-		call append(line(".")+2, "	> Mail: fanhangzhou@163.com ") 
-		call append(line(".")+3, "	> Created Time: ".strftime("%c")) 
-		call append(line(".")+4, " ************************************************************************/") 
-		call append(line(".")+5, "")
 	endif
 	if &filetype == 'cpp'
 		call append(line(".")+6, "#include <iostream>")
@@ -102,10 +74,10 @@ func SetTitle()
 	"新建文件后，自动定位到文件末尾
 	autocmd BufNewFile * normal G
 endfunc 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "键盘命令
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 nmap <leader>w :w!<cr>
 nmap <leader>f :find<cr>
 
@@ -115,39 +87,6 @@ map! <C-A> <Esc>ggVGY
 map <F12> gg=G
 " 选中状态下 Ctrl+c 复制
 vmap <C-c> "+y
-"去空行  
-" nnoremap <F2> :g/^\s*$/d<CR> 
-"列出当前目录文件  
-" map <F3> :tabnew .<CR>  
-"C，C++ 按F5编译运行
-map <F5> :call CompileRunGcc()<CR>
-func! CompileRunGcc()
-	exec "w"
-	if &filetype == 'c'
-		exec "!g++ % -o %<"
-		exec "! ./%<"
-	elseif &filetype == 'cpp'
-		exec "!g++ % -o %<"
-		exec "! ./%<"
-	elseif &filetype == 'java' 
-		exec "!javac %" 
-		exec "!java %<"
-	elseif &filetype == 'sh'
-		:!./%
-	elseif &filetype == 'py'
-		exec "!python %"
-		exec "!python %<"
-	endif
-endfunc
-"C,C++的调试
-map <F8> :call Rungdb()<CR>
-func! Rungdb()
-	exec "w"
-	exec "!g++ % -g -o %<"
-	exec "!gdb ./%<"
-endfunc
-
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""实用设置
@@ -274,9 +213,10 @@ endfunction
 filetype plugin indent on 
 "打开文件类型检测, 加了这句才可以用智能补全
 set completeopt=longest,menu
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "NERDtee插件设定
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let NERDChristmasTree=1
 let NERDTreeAutoCenter=1
 let NERDTreeBookmarksFile=$VIM.'\Data\NerdBookmarks.txt'
@@ -289,11 +229,12 @@ let NERDTreeWinPos='left'
 let NERDTreeWinSize=31
 " 当关闭文件时候，同时关闭nerdtree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
 " 按下 F3 调出/隐藏 NERDTree
 map <F3> :NERDTreeToggle<CR>  
 
-"  omnicppcomplete脚本插件的基本设置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"omnicppcomplete脚本插件的基本设置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set completeopt=menu,menuone  
 let OmniCpp_MayCompleteDot=1    "  打开  . 操作符
 let OmniCpp_MayCompleteArrow=1  "打开 -> 操作符
@@ -304,14 +245,16 @@ let OmniCpp_DefaultNamespace=["std"]
 let OmniCpp_ShowPrototypeInAbbr=1  "打开显示函数原型
 let OmniCpp_SelectFirstItem = 2    "自动弹出时自动跳至第一个
 
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctags 插件基本设置
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set tags=tags
 set tags+=./tags  " 增加当前目录生成的tags文件"
 set tags+=~/.vim/systags   " tags --fields=+iaS --extra=+q -R -f ~/.vim/systags /usr/include /usr/local/include  
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctrlP的设置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 "<Leader>p搜索当前目录下文件
 let g:ctrlp_map = '<c-p>'  
