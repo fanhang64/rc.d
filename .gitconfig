@@ -21,4 +21,5 @@
     prompt = false
 [core]
     editor = vim
-	quotepath = false
+    quotepath = false
+    autocrlf = true  # 自动将win下的crlf转lf
