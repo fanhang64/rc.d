@@ -283,5 +283,3 @@ let g:ctrlp_by_filename = 1
 let g:ctrlp_regexp = 0
 "自定义搜索列表的提示符
 " let g:ctrlp_line_prefix = '♪ '
-
-
