@@ -13,6 +13,7 @@
     sp = stash pop
     up = pull
     cls = remote prune origin
+	acm = !git add . && git commit
 [color]
     ui = true
 [diff]
@@ -22,4 +23,4 @@
 [core]
     editor = vim
     quotepath = false
-    autocrlf = true  # 自动将win下的crlf转lf
+	autocrlf = input
