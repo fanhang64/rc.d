@@ -20,6 +20,8 @@ filetype plugin indent on
 let g:SuperTabDefaultCompletionType = "context"  
 let g:jedi#popup_on_dot = 0 
 colorscheme ron
+" 语法高亮
+syntax on
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 显示相关  
@@ -119,8 +121,6 @@ set foldmethod=indent
 set foldlevel=3 
 " 使用vim的键盘模式
 set nocompatible
-" 语法高亮
-set syntax=on
 " 去掉输入错误的提示声音
 set noeb
 " 在处理未保存或只读文件的时候，弹出确认
