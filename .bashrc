@@ -117,17 +117,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-export JAVA_HOME=/opt/java/jdk/jdk1.8
-export CLASSPATH=${JAVA_HOME}/lib/dt.jar:${JAVA_HOME}/lib/tools.jar:.:
-export PATH=${JAVA_HOME}/bin:$PATH:/home/fanzone/Code/Android/sdk/platform-tools
-export JRE_HOME=/${JAVA_HOME}/jre
-export TOMCAT_HOME=/opt/apache-tomcat-8.0.39
-export http_proxy=''
-export https_proxy=''
-export ftp_proxy=''
-export socks_proxy=''
-
 # python虚拟环境配置
 VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export WORKON_HOME=$HOME/.virtualenvs
